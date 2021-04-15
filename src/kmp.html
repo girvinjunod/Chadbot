@@ -1,0 +1,15 @@
+<script src = 'kmp.js'></script>
+<p>liat di console <br>
+T =  "abacaabaccabacabaabb"<br>
+P = "abacab" <br>
+</p>
+<script>
+let t = "abacaabaccabacabaabb"
+let p = "abacab"
+let indeks = kmp(t, p);
+if (indeks != -1) {
+	console.log ("ketemu di indeks " + indeks);
+	console.log(t.substring(indeks, indeks + p.length));
+	}
+else console.log("gak ketemu");
+</script>
