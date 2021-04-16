@@ -1,0 +1,14 @@
+<p>
+str1 = "hitting"<br>
+str2 = "kitten" <br>
+</p>
+<p id="demo"></p>
+<script src = 'levenshtein.js'></script>
+<script>
+let str1 = "hitting";
+let str2 = "kitten";
+let i = str1.length;
+let j = str2.length;
+console.log(levenshtein(str1, str2, i, j));
+document.getElementById("demo").innerHTML = levenshtein(str1, str2, i, j);
+</script>

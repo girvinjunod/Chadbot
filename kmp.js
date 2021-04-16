@@ -1,23 +1,22 @@
-function b(k, p){
+function b(k, p){ //border function
 	if (k ==0) return 0;
 	if (k == 1) return 0;
-	let sama = true;
 	let awal;
 	let akhir;
 	var b = 0;
 	for (let i = 0; i < k; i++){
 		awal = p.substring(0, i+1);
 		akhir = p.substring(k-i, k+1);
-		if (awal == akhir){
-			b = awal.length;
+		if (awal == akhir){ //mencari prefix terbesar dari p[0..k] yang juga suffix dri p[1..k]
+			b = awal.length; //ambil ukurannya
 		}
 	}
 	return b;
 }
 function barray(pattern){
-	let j = pattern.length-1;
+	let j = pattern.length-1; //panjang p
 	let fail = []
-	for (let k = 0; k< j; k++){
+	for (let k = 0; k< j; k++){ //mengisi semua array border function
 		fail[k] = b(k,pattern);
 	}
 	/*
@@ -46,19 +45,33 @@ function barray(pattern){
 function kmp(t, p){
 	let n = t.length;
 	let m = p.length;
-	let fail = barray(p);
+	let fail = barray(p); //array border function
 	let i =0;
 	let j = 0;
+	let res;
+	let imax = 0;
+	let jmax = 0;
+	let temp;
 	while (i < n){
-		if (t[i] == p[j]){
-			if (j == m-1) return (i-m+1);
+		if (t[i] == p[j]){ //jika match
+			if (j == m-1) { //jika match di karakter terakhir p
+				res = [true, i-m+1] //return bahwa ketemu, dan indeks ketemunya
+				return res;
+			}
 			i++;
 			j++;
 		}
-		else if (j>0){
-			j = fail[j-1];
+		else if (j>0){ //jika tidak match
+			temp = j-1;
+			if (temp > jmax) { //menyimpan match terdekat sejauh ini
+				jmax = temp;
+				imax = i-j;
+			}
+			j = fail[j-1]; //j = b(k)
 		}
 		else i++;
 	}
-	return -1;
+	let strsisa = t.substring(imax, imax+jmax+1);
+	res = [false, strsisa] //return string terdekat dengan pattern jika tidak ketemu
+	return res;
 }
