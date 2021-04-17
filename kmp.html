@@ -1,11 +1,11 @@
 <script src = 'kmp.js'></script>
 <p>liat di console <br>
-T =  "abacaabaccabacabaabb"<br>
+T =  "abacaabaccAbaCabaabb"<br>
 P = "abacab" <br>
 </p>
 <script>
-let t = "abacaabaccabacabaabb"
-let p = "abacab"
+let t = "abacaabaccAbACabaabb"
+let p = "abacaBZ"
 let res = kmp(t,p);
 console.log(res.toString()); //res = [true/false, indeks mulai string bener/ string paling mendekati]
 if (res[0]){

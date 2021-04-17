@@ -3,12 +3,17 @@ str1 = "hitting"<br>
 str2 = "kitten" <br>
 </p>
 <p id="demo"></p>
+<p id="demo1"></p>
 <script src = 'levenshtein.js'></script>
 <script>
-let str1 = "hitting";
-let str2 = "kitten";
+let str1 = "fuzzy wuzzy";
+let str2 = "wuzzy fuzzy in a";
 let i = str1.length;
 let j = str2.length;
-console.log(levenshtein(str1, str2, i, j));
-document.getElementById("demo").innerHTML = levenshtein(str1, str2, i, j);
+let res = levenshtein(str1, str2, i, j);
+let score = similarityscore(str1, str2, res);
+console.log(res);
+console.log(score);
+document.getElementById("demo").innerHTML = res;
+document.getElementById("demo1").innerHTML = score;
 </script>

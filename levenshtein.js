@@ -17,3 +17,7 @@ function levenshtein(str1, str2, i, j){
         return Math.min(a,b,c);
     }
 }
+
+function similarityscore(str1, str2, ldist){
+	return 1- (ldist/(Math.max(str1.length, str2.length)));
+}

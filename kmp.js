@@ -52,8 +52,11 @@ function kmp(t, p){
 	let imax = 0;
 	let jmax = 0;
 	let temp;
+	let reg;
 	while (i < n){
-		if (t[i] == p[j]){ //jika match
+		reg = new RegExp(p[j], "i"); //pakai regex agar tidak case sensitive
+		//if (t[i] == p[j])
+		if (t[i].match(reg) != null){ //jika match
 			if (j == m-1) { //jika match di karakter terakhir p
 				res = [true, i-m+1] //return bahwa ketemu, dan indeks ketemunya
 				return res;
@@ -72,6 +75,7 @@ function kmp(t, p){
 		else i++;
 	}
 	let strsisa = t.substring(imax, imax+jmax+1);
+	strsisa = strsisa.toLowerCase();
 	res = [false, strsisa] //return string terdekat dengan pattern jika tidak ketemu
 	return res;
 }
