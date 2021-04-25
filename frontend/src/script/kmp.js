@@ -79,3 +79,5 @@ function kmp(t, p){
 	res = [false, strsisa] //return string terdekat dengan pattern jika tidak ketemu
 	return res;
 }
+
+export { kmp }
