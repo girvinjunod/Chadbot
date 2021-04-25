@@ -1,0 +1,55 @@
+todo
+nentuin keyword buat tiap perintah
+
+nanti ini digabung sama pemakaian kmp
+
+tanggal = 
+/(0[1-9]|[12]\d|3[01])[-/](0[1-9]|1[0-2])[/-][12]\d{3}/g
+
+tanggal teks = 
+/(0[1-9]|[12]\d|3[01]) (([Jj]anuari)|([Ff]ebruari)|([Mm]aret)|([Aa]pril)|([Mm]ei)|([Jj]uni)|([Jj]uli)|([Aa]gustus)|([Ss]eptember)|([Oo]ktober)|([Nn]ovember)|([Dd]esember)) [12]\d{s3}/g
+
+kode mata kuliah = 
+/[A-Z]{2}\d{4}/g
+
+topik = 
+/[Tt]opik ([A-Z]|[a-z]| )+/g
+
+(nanti deteksi kata topik, trus ambil kata setelahnya gitu)
+
+jenis = 
+/[Kk]uis/g
+/[Pp]raktikum/g
+/[Tt]ubes/g
+/[Tt]ucil/g
+/[Uu][Tt][Ss]/g
+/[Uu][Aa][Ss]/g
+
+(cocokin kata penting, nambah aj klo mau kata pentingnya)
+
+hari ini = 
+/hari ini/ig
+
+N minggu = 
+/\d minggu/ig
+
+N hari = 
+/\d hari/ig
+
+deadline = 
+/deadline/ig
+
+selesai = 
+/selesai/ig
+
+help = 
+/help/ig
+/apa(.+)chadbot(.+)lakukan(.+)?/ig
+
+kapan = 
+/kapan/ig
+
+update = 
+/diubah/ig
+/update/ig
+
