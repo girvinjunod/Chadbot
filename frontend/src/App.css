@@ -5,20 +5,26 @@ body.main-container {
     grid-template-columns: 1fr 3fr;
 }
 
+h1 {
+    font-family: "Bangers";
+}
+
 .side-header {
-    background-color: burlywood;
+    background-color: white;
     padding: 1rem;
 }
 
 .chat-container {
     position: relative;
-    background-color: darkcyan;
+    background-color: yellow;
     padding: 1rem;
     overflow-y: auto;
 }
 
 .chat-text-box {
-    background-color: white;
-    position: sticky;
+    position: absolute;
+    width: 95%;
     bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
 }
