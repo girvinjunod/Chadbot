@@ -4,10 +4,10 @@ nentuin keyword buat tiap perintah
 nanti ini digabung sama pemakaian kmp
 
 tanggal = 
-/(0[1-9]|[12]\d|3[01])[-/](0[1-9]|1[0-2])[/-][12]\d{3}/g
+/(0?[1-9]|[12]\d|3[01])[-/](0?[1-9]|1[0-2])[/-][12]\d{3}/g
 
 tanggal teks = 
-/(0[1-9]|[12]\d|3[01]) (([Jj]anuari)|([Ff]ebruari)|([Mm]aret)|([Aa]pril)|([Mm]ei)|([Jj]uni)|([Jj]uli)|([Aa]gustus)|([Ss]eptember)|([Oo]ktober)|([Nn]ovember)|([Dd]esember)) [12]\d{s3}/g
+/(0?[1-9]|[12]\d|3[01]) (([Jj]anuari)|([Ff]ebruari)|([Mm]aret)|([Aa]pril)|([Mm]ei)|([Jj]uni)|([Jj]uli)|([Aa]gustus)|([Ss]eptember)|([Oo]ktober)|([Nn]ovember)|([Dd]esember)) [12]\d{s3}/g
 
 kode mata kuliah = 
 /[A-Z]{2}\d{4}/g

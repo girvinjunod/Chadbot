@@ -1,5 +1,5 @@
 function levenshtein(str1, str2, i, j){
-    if (Math.min(i, j) == 0){
+    if (Math.min(i, j) === 0){
         //console.log("Max =" + Math.max(i,j));
         return Math.max(i,j);
     }
@@ -10,7 +10,7 @@ function levenshtein(str1, str2, i, j){
         a = levenshtein(str1, str2, i-1, j) + 1;
         b = levenshtein(str1, str2, i, j-1) + 1;
         c = levenshtein(str1, str2, i-1, j-1);
-        if (str1[i-1] != str2[j-1]){
+        if (str1[i-1] !== str2[j-1]){
             c+=1;
         }
         //console.log("Min =" +Math.min(a,b,c));

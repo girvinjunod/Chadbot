@@ -1,13 +1,13 @@
 function b(k, p){ //border function
-	if (k ==0) return 0;
-	if (k == 1) return 0;
+	if (k === 0) return 0;
+	if (k === 1) return 0;
 	let awal;
 	let akhir;
 	var b = 0;
 	for (let i = 0; i < k; i++){
 		awal = p.substring(0, i+1);
 		akhir = p.substring(k-i, k+1);
-		if (awal == akhir){ //mencari prefix terbesar dari p[0..k] yang juga suffix dri p[1..k]
+		if (awal === akhir){ //mencari prefix terbesar dari p[0..k] yang juga suffix dri p[1..k]
 			b = awal.length; //ambil ukurannya
 		}
 	}
@@ -57,7 +57,7 @@ function kmp(t, p){
 		reg = new RegExp(p[j], "i"); //pakai regex agar tidak case sensitive
 		//if (t[i] == p[j])
 		if (t[i].match(reg) != null){ //jika match
-			if (j == m-1) { //jika match di karakter terakhir p
+			if (j === m-1) { //jika match di karakter terakhir p
 				res = [true, i-m+1] //return bahwa ketemu, dan indeks ketemunya
 				return res;
 			}
