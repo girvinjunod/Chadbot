@@ -97,7 +97,7 @@ function App() {
                             // n minggu ke depan
                             // n hari kedepan
                             // hari ini
-                            if (date.length == 2){
+                            if (date.length === 2){
                                 console.log("Masuk show periode")
                             }
                             else{
