@@ -40,7 +40,7 @@ function App() {
                         partnerChat={partnerChat} 
                         myChatColor={"green"} 
                         partnerChatColor={"grey"}/>
-                    <div ref={lastChat} style={{height: "48px", scrollMargin: "16px"}}/>
+                    <div ref={lastChat} style={{height: "64px", scrollMargin: "16px"}}/>
                 </div>
                 <div className="chat-text-box">
                     <InputGroup size="lg">
