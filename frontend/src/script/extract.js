@@ -82,27 +82,27 @@ function extractjenis(query){
     let jenis;
     jenis = query.match(/[Kk]uis/ig);
     if (jenis != null){
-        return jenis[0];
+        return jenis[0].toLowerCase();
     }
     jenis = query.match(/[Pp]raktikum/ig);
     if (jenis != null){
-        return jenis[0];
+        return jenis[0].toLowerCase();
     }
     jenis = query.match(/[Tt]ubes/ig);
     if (jenis != null){
-        return jenis[0];
+        return jenis[0].toLowerCase();
     }
     jenis = query.match(/[Tt]ucil/ig);
     if (jenis != null){
-        return jenis[0];
+        return jenis[0].toLowerCase();
     }
     jenis = query.match(/[Uu][Tt][Ss]/ig);
     if (jenis != null){
-        return jenis[0];
+        return jenis[0].toLowerCase();
     }
     jenis = query.match(/[Uu][Aa][Ss]/ig);
     if (jenis != null){
-        return jenis[0];
+        return jenis[0].toLowerCase();
     }
     return null;
 }
