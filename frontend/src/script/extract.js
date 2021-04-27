@@ -14,3 +14,4 @@ console.log(extractdate("01-7-2012"))
 console.log(extractmakul("MA2200"))
 console.log(extracttopik("Topik admin labpro 1"))
 
+export { extractdate, extractmakul, extracttopik}
