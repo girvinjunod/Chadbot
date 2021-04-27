@@ -8,46 +8,55 @@ import { kmp } from './script/kmp'
 import "./App.css"
 
 function App() {
+    // Ref
+    const lastChat = React.useRef()
+
+    // States
     const [chatText, setChatText] = React.useState("")
+    const [myChat, setMyChat] = React.useState([])
+    const [partnerChat, setPartnerChat] = React.useState([])
 
     const sendChat = (text) => {
-        var res = kmp(text, "test")
+        if (text.length > 0) {
+            const temp = [...myChat, text]
+            const res = kmp(text, "test")
 
-        console.log(res)
+            setMyChat(temp)
+            setChatText("")
+            lastChat.current?.scrollIntoView({ behavior: 'smooth' })
+        }
     }
 
-    const myChat = [
-        "Tesrtingadsg",
-        "Crazier than usual"
-    ]
-
-    const partnerChat = [
-        "Tesrtingadsg",
-        "Crazier than usual"
-    ]
-
     return (
-        <body className="main-container">
+        <div className="main-container">
             <div className="side-header">
                 <h1>Chadbot</h1>
             </div>
 
-            <div className="chat-container">
-                <BubbleChatGroup myChat={myChat} partnerChat={partnerChat} myChatColor={"green"} partnerChatColor={"grey"}/>
+            <div className="body">
+                <div className="chat-container">
+                    <BubbleChatGroup 
+                        myChat={myChat} 
+                        partnerChat={partnerChat} 
+                        myChatColor={"green"} 
+                        partnerChatColor={"grey"}/>
+                    <div ref={lastChat} style={{height: "48px", scrollMargin: "16px"}}/>
+                </div>
                 <div className="chat-text-box">
-                    <InputGroup className="mb-3" size="lg">
+                    <InputGroup size="lg">
                         <FormControl
+                            value={chatText}
                             placeholder="Chat something here!"
-                            aria-label="Chat something here!"
                             aria-describedby="basic-addon2"
+                            onKeyPress={key => {if (key.charCode === 13) sendChat(chatText)}}
                             onChange={e => setChatText(e.target.value)}/>
                         <InputGroup.Append>
-                        <Button variant="secondary" onClick={() => sendChat(chatText)}>Send</Button>
+                            <Button variant="secondary" onClick={() => sendChat(chatText)}>Send</Button>
                         </InputGroup.Append>
                     </InputGroup>
                 </div>
             </div>
-        </body>
+        </div>
     );
 }
 
