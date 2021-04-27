@@ -26,7 +26,8 @@ const BubbleChatGroup = (props) => {
     return (
         <div className="d-flex flex-column">
             {allChat.map((value, index) => 
-                <BubbleChat text={value} 
+                <BubbleChat text={value}
+                    isRight={(index % 2 == 0)}
                     color={(index % 2 == 0) ? myChatColor : partnerChatColor} 
                     className={(index % 2 == 0) ? "align-self-end" : "align-self-start"}/>
             )}
