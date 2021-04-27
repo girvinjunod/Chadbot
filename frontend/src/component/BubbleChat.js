@@ -1,7 +1,7 @@
 import { motion } from "framer-motion"
 
 const BubbleChat = (props) => {
-    const { text, color, className, isRight } = props
+    const { text, color, textColor, className, isRight } = props
     const spring = {
         type: "spring",
         damping: 10,
@@ -15,6 +15,7 @@ const BubbleChat = (props) => {
                 flexDirection: 'row', 
                 width: 'max-content',
                 maxWidth: '512px',
+                marginTop: '8px',
                 alignItems: 'center'}}
             transiton={spring}
             initial={{ opacity: 0, y: -20, scale: 0.8 }}
@@ -29,12 +30,14 @@ const BubbleChat = (props) => {
             }
             <div style={{
                     display: 'block',
+                    color: textColor,
                     backgroundColor: color, 
                     borderRadius: 12,
                     paddingTop: 8,
                     paddingBottom: 8,
                     paddingLeft: 14,
                     paddingRight: 14,
+                    boxShadow: '8px 6px 8px rgba(0, 0, 0, 0.07)',
                     whiteSpace: 'pre-wrap',
                     width: 'max-content',
                     maxWidth: '512px'}}>
