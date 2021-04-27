@@ -49,8 +49,8 @@ function kmp(t, p){
 	let i =0;
 	let j = 0;
 	let res;
-	let imax = 0;
-	let jmax = 0;
+	let imax = -1;
+	let jmax = -1;
 	let temp;
 	let reg;
 	while (i < n){
@@ -74,8 +74,14 @@ function kmp(t, p){
 		}
 		else i++;
 	}
-	let strsisa = t.substring(imax, imax+jmax+1);
-	strsisa = strsisa.toLowerCase();
+	let strsisa;
+	if (imax === -1){
+		strsisa = "";
+	}
+	else{
+		strsisa = t.substring(imax, imax + m);
+		strsisa = strsisa.toLowerCase();
+	}
 	res = [false, strsisa] //return string terdekat dengan pattern jika tidak ketemu
 	return res;
 }
