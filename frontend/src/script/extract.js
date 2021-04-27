@@ -1,5 +1,5 @@
 function extractdate(query){
-    let dates = query.match(/(0?[1-9]|[12]\d|3[01])[-/](0?[1-9]|1[0-2])[/-][12]\d{3}/g) || query.match(/(0?[1-9]|[12]\d|3[01]) (([Jj]anuari)|([Ff]ebruari)|([Mm]aret)|([Aa]pril)|([Mm]ei)|([Jj]uni)|([Jj]uli)|([Aa]gustus)|([Ss]eptember)|([Oo]ktober)|([Nn]ovember)|([Dd]esember)) [12]\d{3}/g); 
+    let dates = query.match(/(0?[1-9]|[12]\d|3[01])[-/](0?[1-9]|1[0-2])[/-][12]\d{3}/g) || query.match(/(0?[1-9]|[12]\d|3[01]) (([Jj]anuari)|([Ff]ebruari)|([Mm]aret)|([Aa]pril)|([Mm]ei)|([Jj]uni)|([Jj]uli)|([Aa]gustus)|([Ss]eptember)|([Oo]ktober)|([Nn]ovember)|([Dd]esember)) [12]\d{3}/ig); 
     let resDate = [];
 
     if (dates === null) return null
@@ -62,59 +62,78 @@ function extractdate(query){
     return (resDate.length === 1) ? resDate[0] : resDate
 }
 
-
-
 function extractmakul(query){
-    return query.match(/[A-Z]{2}\d{4}/g);
-}
+    let makul = query.match(/[A-Z]{2}\d{4}/ig);
+    if (makul != null){
+        let kode = makul[0].substring(0, 2);
+        let angka = makul[0].substring(2);
+        kode = kode.toUpperCase();
+        return kode.concat(angka);
+    }
+    return null;
+}  
 
 function extracttopik(query){
-    return query.match(/"(.)+"/g); 
+    let topik = query.match(/"(.)+"/g);
+    return topik[0].substring(1,topik[0].length-1);
 }
 
 function extractjenis(query){
     let jenis;
-    jenis = query.match(/[Kk]uis/g);
+    jenis = query.match(/[Kk]uis/ig);
     if (jenis != null){
-        return jenis;
+        return jenis[0];
     }
-    jenis = query.match(/[Pp]raktikum/g);
+    jenis = query.match(/[Pp]raktikum/ig);
     if (jenis != null){
-        return jenis;
+        return jenis[0];
     }
-    jenis = query.match(/[Tt]ubes/g);
+    jenis = query.match(/[Tt]ubes/ig);
     if (jenis != null){
-        return jenis;
+        return jenis[0];
     }
-    jenis = query.match(/[Tt]ucil/g);
+    jenis = query.match(/[Tt]ucil/ig);
     if (jenis != null){
-        return jenis;
+        return jenis[0];
     }
-    jenis = query.match(/[Uu][Tt][Ss]/g);
+    jenis = query.match(/[Uu][Tt][Ss]/ig);
     if (jenis != null){
-        return jenis;
+        return jenis[0];
     }
-    jenis = query.match(/[Uu][Aa][Ss]/g);
+    jenis = query.match(/[Uu][Aa][Ss]/ig);
     if (jenis != null){
-        return jenis;
+        return jenis[0];
     }
+    return null;
 }
 
 function extractnminggu(query){
-    return query.match(/\d minggu/ig);
+    let minggu = query.match(/\d minggu/ig);
+    if (minggu != null){
+        return minggu[0][0];
+    }
+    return null;
 }
 
 function extractnhari(query){
-    return query.match(/\d hari/ig);
+    let hari = query.match(/\d hari/ig);
+    if (hari != null){
+        return hari[0][0]
+    }
+    return null;
 }
+
 
 function extracthariini(query){
     return query.match(/hari ini/ig);
 }
 
 function extractid(query){
-    let id = query.match(/[Ii][Dd] \d+/g);
-    return id.substring(3);
+    let id = query.match(/[Ii][Dd] \d+/ig);
+    if (id != null){
+        return id[0].substring(3); //output udh angka
+    }
+    return null;
 }
 
 export { extractdate, extractmakul, extracttopik, extractjenis, extractnminggu, extractnhari, extracthariini, extractid }
