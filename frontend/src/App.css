@@ -7,21 +7,32 @@
 
 .side-header {
     display: flex;
+    position: relative;
     flex: 1;
+    flex-direction: column;
     background-color: white;
+    box-shadow: 4px 0px 8px 0 rgba(0, 0, 0, 0.075);
+    padding: 1rem 0;
+}
+
+.side-footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
     padding: 1rem;
 }
 
 .body {
     display: flex;
     flex-direction: column;
-    flex: 3;
-    background-color: yellow;
+    flex: 4;
+    background-color: white;
     width: 100%;
 }
 
-h1 {
+h1, h2 {
     font-family: "Bangers";
+    text-align: center;
 }
 
 .chat-container {
@@ -29,6 +40,11 @@ h1 {
     width: 100%;
     padding: 1rem;
     overflow-y: scroll;
+    scrollbar-width: none;
+}
+
+.chat-container::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
 }
 
 .chat-text-box {
