@@ -7,3 +7,10 @@ cd frontend
 npm install
 npm start
 ```
+
+# How to run the backend
+```
+cd backend
+npm install
+nodemon app.js
+```
