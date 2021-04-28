@@ -6,7 +6,8 @@ const BubbleChatGroup = (props) => {
     return (
         <div className="d-flex flex-column">
             {messages.map((value, index) => 
-                <BubbleChat text={value.message}
+                <BubbleChat key={index}
+                    text={value.message}
                     isRight={(value.isMyChat)}
                     color={(value.isMyChat) ? myChatColor : partnerChatColor} 
                     textColor={(value.isMyChat) ? myChatTextColor : partnerChatTextColor} 

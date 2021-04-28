@@ -1,5 +1,5 @@
 function extractdate(query){
-    let dates = query.match(/(0?[1-9]|[12]\d|3[01])[-/](0?[1-9]|1[0-2])[/-][12]\d{3}/g) || query.match(/(0?[1-9]|[12]\d|3[01]) (([Jj]anuari)|([Ff]ebruari)|([Mm]aret)|([Aa]pril)|([Mm]ei)|([Jj]uni)|([Jj]uli)|([Aa]gustus)|([Ss]eptember)|([Oo]ktober)|([Nn]ovember)|([Dd]esember)) [12]\d{3}/ig); 
+    let dates = query.match(/(0?[1-9]|[12]\d|3[01])[-/](0?[1-9]|1[0-2])[/-][12]\d{3}/g) || query.match(/(0?[1-9]|[12]\d|3[01]) (([Jj]anuary)|([Ff]ebruary)|([Mm]arch)|([Aa]pril)|([Mm]ay)|([Jj]une)|([Jj]uly)|([Aa]ugust)|([Ss]eptember)|([Oo]ctober)|([Nn]ovember)|([Dd]ecember)) [12]\d{3}/ig); 
     let resDate = [];
 
     if (dates === null) return null
@@ -9,40 +9,40 @@ function extractdate(query){
             let [day, month, year] = date.split(' ')
             
             switch (month.toLowerCase()) {
-                case "januari":
+                case "january":
                     month = 1;
                     break;
-                case "februari":
+                case "february":
                     month = 2;
                     break;
-                case "maret":
+                case "march":
                     month = 3;
                     break;
                 case "april":
                     month = 4;
                     break;
-                case "mei":
+                case "may":
                     month = 5;
                     break;
-                case "juni":
+                case "june":
                     month = 6;
                     break;
-                case "juli":
+                case "july":
                     month = 7;
                     break;
-                case "agustus":
+                case "august":
                     month = 8;
                     break;
                 case "september":
                     month = 9;
                     break;
-                case "oktober":
+                case "october":
                     month = 10;
                     break;
                 case "november":
                     month = 11;
                     break;
-                case "desember":
+                case "december":
                     month = 12;
                     break;
                 default:
@@ -75,6 +75,7 @@ function extractmakul(query){
 
 function extracttopik(query){
     let topik = query.match(/"(.)+"/g);
+    if (topik == null) return null;
     return topik[0].substring(1,topik[0].length-1);
 }
 
@@ -108,7 +109,7 @@ function extractjenis(query){
 }
 
 function extractnminggu(query){
-    let minggu = query.match(/\d minggu/ig);
+    let minggu = query.match(/\d week/ig);
     if (minggu != null){
         return minggu[0][0];
     }
@@ -116,7 +117,7 @@ function extractnminggu(query){
 }
 
 function extractnhari(query){
-    let hari = query.match(/\d hari/ig);
+    let hari = query.match(/\d day/ig);
     if (hari != null){
         return hari[0][0]
     }
@@ -125,7 +126,7 @@ function extractnhari(query){
 
 
 function extracthariini(query){
-    return query.match(/hari ini/ig);
+    return query.match(/today/ig);
 }
 
 function extractid(query){
