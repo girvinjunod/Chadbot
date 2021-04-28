@@ -6,15 +6,16 @@ const colName = 'works'; // ganti nama database disini, ada "tubes" dan ada "tes
 require('dotenv/config');
 const data = require('./route');
 const Work = require('./models/Work');
+ATLAS_URI = "mongodb+srv://chadbot:chadbot@stima-chadbot.ynlvv.mongodb.net/tubes?retryWrites=true&w=majority"
 
 const MongoClient = require('mongodb').MongoClient
-const client = new MongoClient(process.env.ATLAS_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+const client = new MongoClient(ATLAS_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 app.use(express.json());
 app.use(cors({origin: true, credentials: true}));
 
 // Connect to MongoDB
-mongoose.connect(process.env.ATLAS_URI, { useNewUrlParser: true }, (err, res) => {
+mongoose.connect(ATLAS_URI, { useNewUrlParser: true }, (err, res) => {
     if (err) {
         res.send(err);
     } else {
