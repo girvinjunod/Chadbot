@@ -28,7 +28,8 @@ Layar Utama
 * Bootstrap - version 4.6.0
 
 ## Setup
-
+https://chadbot-stima.herokuapp.com/ - Frontend
+https://chadbot-stima-backend.herokuapp.com/ - Backend
 
 ## Deploy Locally
 1. Deploy Backend

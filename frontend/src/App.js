@@ -18,7 +18,7 @@ import "./App.css"
 import avatar from './assets/johnnybravo.png';
 
 // const API_URL = `http://localhost:5000`
-const API_URL = `http://chadbot-stima-/backend.herokuapp.com`
+const API_URL = `https://chadbot-stima-backend.herokuapp.com`
 
 function App() {
     // Const
@@ -278,7 +278,7 @@ Here are my features:
 
     const getAllData = async () => {
         try {
-            let res = await axios.get(`${API_URL}/data/fetch`)
+            let res = await axios.get(`${API_URL}/data/fetch`, { withCredentials: true })
             return res.data
         } catch (err) {
             console.log(err)
@@ -304,7 +304,7 @@ Here are my features:
             let res = await axios.put(`${API_URL}/data/update`, {
                 wid: id,
                 deadline: deadline
-            }, { headers: {'Content-Type': 'application/json'} })
+            }, { headers: {'Content-Type': 'application/json'}, withCredentials: true })
 
             console.log(res)
         } catch (err) {
