@@ -18,7 +18,7 @@ import "./App.css"
 import avatar from './assets/johnnybravo.png';
 
 // const API_URL = `http://localhost:5000`
-const API_URL = `http://chadbot-stima-/backend.herokuapp.com`
+const API_URL = `https://chadbot-stima-/backend.herokuapp.com`
 
 function App() {
     // Const
