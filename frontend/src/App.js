@@ -128,7 +128,7 @@ function App() {
                             }
                             break;
                         case "deadline":
-                            if (id != null){
+                            if (makul != null){
                                 // masukin ke database
                                 console.log("Masuk dedline")
                             }
@@ -142,7 +142,14 @@ function App() {
                             break;
                         case "help":
                             //help
-                            console.log("Masuk help")
+                            temp.push({
+                                message: 
+                                `Available features:
+                                1. Add a new task to the planner (Keyword: add, Args: )
+                                2. 
+                                `,
+                                isMyChat: false
+                            })
                             break;
                         default:
                             break;
@@ -183,7 +190,7 @@ function App() {
         }
     }
 
-    const getData = async () => {
+    const getAllData = async () => {
         try {
             let res = await axios.get(`http://localhost:5000/data`)
             console.log(res)
@@ -193,7 +200,7 @@ function App() {
     }
 
     React.useEffect(() => {
-        getData()
+        getAllData()
         lastChat.current?.scrollIntoView({ behavior: 'smooth' })
     }, [messages])
 
