@@ -3,6 +3,7 @@ import InputGroup from 'react-bootstrap/InputGroup'
 import FormControl from 'react-bootstrap/FormControl'
 import Button from 'react-bootstrap/Button'
 import BubbleChatGroup from './component/BubbleChatGroup'
+import { IoSend } from 'react-icons/io5'
 import axios from 'axios'
 
 // Script
@@ -179,7 +180,6 @@ function App() {
 
             setMessages(temp)
             setChatText("")
-            lastChat.current?.scrollIntoView({ behavior: 'smooth' })
         }
     }
 
@@ -194,7 +194,8 @@ function App() {
 
     React.useEffect(() => {
         getData()
-    }, [])
+        lastChat.current?.scrollIntoView({ behavior: 'smooth' })
+    }, [messages])
 
     return (
         <div className="main-container">
@@ -217,18 +218,20 @@ function App() {
                         partnerTextColor={"black"}
                         myChatColor={"#32353f"}
                         partnerChatColor={"#FACA00"}/>
-                    <div ref={lastChat} style={{height: "64px", scrollMargin: "16px"}}/>
+                    <div ref={lastChat} style={{height: "32px"}}/>
                 </div>
                 <div className="chat-text-box">
-                    <InputGroup size="lg">
+                    <InputGroup size="lg" className="shadow">
                         <FormControl
                             value={chatText}
-                            placeholder="Chat something here!"
+                            placeholder="Type here and press enter or click the right button to send!"
                             aria-describedby="basic-addon2"
                             onKeyPress={key => {if (key.charCode === 13) sendChat(chatText)}}
                             onChange={e => setChatText(e.target.value)}/>
                         <InputGroup.Append>
-                            <Button variant="secondary" onClick={() => sendChat(chatText)}>Send</Button>
+                            <Button variant="primary" onClick={() => sendChat(chatText)}>
+                                <IoSend/>
+                            </Button>
                         </InputGroup.Append>
                     </InputGroup>
                 </div>

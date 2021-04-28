@@ -15,7 +15,7 @@ const BubbleChat = (props) => {
                 flexDirection: 'row', 
                 width: 'max-content',
                 maxWidth: '512px',
-                marginTop: '8px',
+                marginTop: '24px',
                 alignItems: 'center'}}
             transiton={spring}
             initial={{ opacity: 0, y: -20, scale: 0.8 }}
