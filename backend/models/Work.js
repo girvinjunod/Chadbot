@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const WorkSchema = mongoose.Schema({
     wid: {
         type: Number,
-        required: true
+        required: true,
     },
     makul: {
         type: String,
@@ -24,4 +24,4 @@ const WorkSchema = mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('Works', WorkSchema);
+module.exports = mongoose.model('Work', WorkSchema);
