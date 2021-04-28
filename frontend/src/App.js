@@ -97,7 +97,7 @@ function App() {
                             // n minggu ke depan
                             // n hari kedepan
                             // hari ini
-                            if (date.length == 2){
+                            if (date != null && date.length == 2){
                                 console.log("Masuk show periode")
                             }
                             else{
@@ -120,7 +120,8 @@ function App() {
                                             console.log("Masuk show hari ini")
                                         }
                                         else{
-                                            console.log("Masuk show all")
+                                            let test = axios.get(`http://localhost:5000/data/print`);
+                                            console.log(test)
                                         }
                                     }
                                 }
