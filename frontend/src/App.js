@@ -121,7 +121,8 @@ function App() {
                                             console.log("Masuk show hari ini")
                                         }
                                         else{
-                                            console.log("Masuk show all")
+                                            let test = axios.get(`http://localhost:5000/data/print`);
+                                            console.log(test)
                                         }
                                     }
                                 }
