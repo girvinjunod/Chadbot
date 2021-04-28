@@ -24,8 +24,8 @@ mongoose.connect(process.env.ATLAS_URI, { useNewUrlParser: true }, (err, res) =>
 
 // Connect client to MongoDB
 client.connect(function (err, db) {
-        collection = client.db("tubes").collection(colName);
-        console.log(`client connected`);
+    collection = client.db("tubes").collection(colName);
+    console.log(`client connected`);
 });
 
 // Setup cors
@@ -41,12 +41,8 @@ let dataa = [
     {wid: 10, makul: 'IF2211', deadline: Date.now(), topik: 'test', jenis: 'pr'}
 ]
 
-app.get('/', function(req, res, next) {
-    res.send('test');
-});
-
 // dapetin semua data di database
-app.get('/data/fetch', (req,res) => {
+app.get('/data/fetch', async (req,res) => {
     collection.find({}).toArray((err, result) => {
         if (err) {
             res.status(400).send(err);
@@ -84,7 +80,15 @@ app.post('/data/add', async (req, res) => {
             topik: req.body.topik,
             jenis: req.body.jenis
         };
-        res.send(work);
+
+        try {
+            const savedWork = await collection.insertOne(work);
+            res.send(savedWork);
+            console.log(savedWork)
+        } catch (err) {
+            console.log(err)
+            res.status(400).send(err);
+        }
     } 
 });
 
@@ -110,7 +114,7 @@ app.put('/data/update', async (req, res) => {
     }
 });
 
-app.delete('/data/delete/', (req, res) => {
+app.delete('/data/delete/', async (req, res) => {
     if (!req.body.wid) {
         res.status(400).send('No id given');
     } else {
@@ -118,8 +122,5 @@ app.delete('/data/delete/', (req, res) => {
         collection.deleteOne(delt);
     }
 });
-
-
-
 
 app.listen(process.env.PORT, () => console.log(`App running at https://${process.env.IP}:${process.env.PORT}`));
