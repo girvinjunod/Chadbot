@@ -12,7 +12,7 @@ const MongoClient = require('mongodb').MongoClient
 const client = new MongoClient(ATLAS_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 app.use(express.json());
-app.use(cors({origin: true, credentials: true}));
+app.use(cors());
 
 // Connect to MongoDB
 mongoose.connect(ATLAS_URI, { useNewUrlParser: true }, (err, res) => {
@@ -58,10 +58,12 @@ app.post('/data/add', async (req, res) => {
         // let mx = collection.findOne().sort({age:-1})
         // console.log(mx)
         let maxWid = 0;
-        await collection.find().sort({wid:-1}).limit(1).forEach(element => {
-            maxWid = element.wid;
-        });
-        // let max = collection.find({wid:1}).sort({wid:-1}).limit(1)
+        let size = await collection.countDocuments({})
+        if (size > 0) {
+            await collection.find().sort({wid:-1}).limit(1).forEach(element => {
+                maxWid = element.wid;
+            });
+        }
         let work = {
             makul: req.body.makul,
             wid: Number(maxWid + 1),
@@ -90,7 +92,7 @@ app.put('/data/update', async (req, res) => {
         console.log(req.body.wid)
         console.log(req.body.deadline)
 
-        const filter = { wid: req.body.wid };
+        const filter = { wid: {$eq: req.body.wid} };
         const update = { $set: {deadline: req.body.deadline }};
         collection.updateOne(filter, update);
         let doc = await collection.findOne(filter);
@@ -103,7 +105,7 @@ app.delete('/data/delete/', async (req, res) => {
         res.status(400).send('No id given');
     } else {
         console.log(req.body.wid)
-        collection.deleteOne({ "wid": req.body.wid }, (err, response) => {
+        collection.deleteOne({ wid: {$eq: req.body.wid} }, (err, response) => {
             if (err) {
                 res.status(400).send(err)
                 console.log(err)
