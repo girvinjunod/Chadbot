@@ -28,18 +28,6 @@ client.connect(function (err, db) {
     console.log(`client connected`);
 });
 
-// Setup cors
-// app.use(function(req, res, next) {
-//     res.header("Access-Control-Allow-Origin", process.env.IP); // update to match the domain you will make the request from
-//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//     next();
-// });
-
-// Dummy data
-let dataa = [
-    {wid: 10, makul: 'IF2211', deadline: Date.now(), topik: 'parse', jenis: 'tubes'},
-    {wid: 10, makul: 'IF2211', deadline: Date.now(), topik: 'test', jenis: 'pr'}
-]
 
 // dapetin semua data di database
 app.get('/data/fetch', async (req,res) => {
@@ -83,7 +71,7 @@ app.post('/data/add', async (req, res) => {
 
         try {
             const savedWork = await collection.insertOne(work);
-            res.send(savedWork);
+            res.send(work);
             console.log(savedWork)
         } catch (err) {
             console.log(err)
@@ -98,19 +86,14 @@ app.put('/data/update', async (req, res) => {
     } else if (!req.body.deadline) {
         res.status(400).send('Deadline tidak boleh kosong');
     } else {
+        console.log(req.body.wid)
+        console.log(req.body.deadline)
+
         const filter = { wid: req.body.wid };
         const update = { $set: {deadline: req.body.deadline }};
-
-        let doc = collection.findOne(filter);
-        await collection.updateOne(filter, update, function(err, res) {
-            if (err) {
-                res.status(400).send('Failed to update')
-            } else {
-                doc = collection.findOne(filter);
-                res.send(doc);
-                console.log('Data updated successfully');
-            }
-        });
+        collection.updateOne(filter, update);
+        let doc = await collection.findOne(filter);
+        res.send(doc)
     }
 });
 
@@ -118,8 +101,15 @@ app.delete('/data/delete/', async (req, res) => {
     if (!req.body.wid) {
         res.status(400).send('No id given');
     } else {
-        const delt = { wid: req.body.wid };
-        collection.deleteOne(delt);
+        console.log(req.body.wid)
+        collection.deleteOne({ "wid": req.body.wid }, (err, response) => {
+            if (err) {
+                res.status(400).send(err)
+                console.log(err)
+            } else {
+                res.send("Successfully deleted")
+            }
+        })
     }
 });
 
