@@ -12,7 +12,7 @@ const MongoClient = require('mongodb').MongoClient
 const client = new MongoClient(ATLAS_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({origin: true, credentials: true}));
 
 // Connect to MongoDB
 mongoose.connect(ATLAS_URI, { useNewUrlParser: true }, (err, res) => {
