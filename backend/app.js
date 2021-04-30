@@ -86,7 +86,7 @@ app.post('/data/add', async (req, res) => {
 });
 
 app.put('/data/update', async (req, res) => {
-    if (!req.body.wid) {
+    if (!req.body.wid || !isInteger(req.body.wid)) {
         res.status(400).send('ID tidak boleh kosong');
     } else if (!req.body.deadline) {
         res.status(400).send('Deadline tidak boleh kosong');
@@ -94,7 +94,8 @@ app.put('/data/update', async (req, res) => {
         console.log(req.body.wid)
         console.log(req.body.deadline)
 
-        const filter = { wid: {$eq: req.body.wid} };
+        const ids = parseInt(req.body.wid);
+        const filter = { wid: ids };
         const update = { $set: {deadline: req.body.deadline }};
         collection.updateOne(filter, update);
         let doc = await collection.findOne(filter);
@@ -103,11 +104,12 @@ app.put('/data/update', async (req, res) => {
 });
 
 app.delete('/data/delete/', async (req, res) => {
-    if (!req.body.wid) {
+    if (!req.body.wid || !isInteger(req.body.wid)) {
         res.status(400).send('No id given');
     } else {
         console.log(req.body.wid)
-        collection.deleteOne({ wid: {$eq: req.body.wid} }, (err, response) => {
+        const ids = parseInt(req.body.wid)
+        collection.deleteOne({ wid: ids }, (err, response) => {
             if (err) {
                 res.status(400).send(err)
                 console.log(err)

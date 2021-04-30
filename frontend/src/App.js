@@ -288,8 +288,9 @@ Here are my features:
 
     const deleteData = async (id) => {
         try {
+            const idx = toInt(id);
             let res = await axios.delete(`${API_URL}/data/delete`, {
-                data: {wid: id}
+                data: {wid: idx}
             }, { headers: {'Content-Type': 'application/json'} })
 
             console.log(res)
@@ -301,8 +302,9 @@ Here are my features:
 
     const updateData = async (id, deadline) => {
         try {
+            const idx = toInt(id);
             let res = await axios.put(`${API_URL}/data/update`, {
-                wid: id,
+                wid: idx,
                 deadline: deadline
             }, { headers: {'Content-Type': 'application/json'}, withCredentials: true })
 
