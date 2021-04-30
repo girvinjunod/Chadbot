@@ -3,7 +3,6 @@
 
 ## Table of contents
 * [General info](#general-info)
-* [Screenshots](#screenshots)
 * [Technologies](#technologies)
 * [Setup](#setup)
 * [Features](#features)
@@ -13,10 +12,6 @@
 
 ## General info
 Chadbot adalah sebuah website yang bekerja melalui sistem Question and Answer dimana chadbot dapat menjawab pertanyaan atau menerima command yang diberikan oleh pengguna. Fitur-fitur dari chadbot adalah menambahkan task baru, melihat daftar task yang harus dikerjakan, menampilkan deadline dari suatu task tertentu, memperbaharui task tertentu, menandai bahwa suatu task sudah selesai dikerjakan, menampilkan opsi help yang difasilitasi oleh assistant, mendefinisikan list kata penting terkait apakah itu merupakan suatu task atau tidak, dan menampilkan pesan error jika assistant tidak dapat mengenali masukan user. Dalam kerjanya chatbot akan diberikan masukan oleh user, lalu dari masukan itu chatbot akan memilih fitur yang tepat dan melakukan fungsinya sesuai dengan masukan user. Aplikasi chatbot yang dibuat merupakan aplikasi berbasis web.
-
-## Screenshots
-![Example screenshot](./img/screenshot.png)
-Layar Utama
 
 ## Technologies
 * MongoDB - version 3.6.6
@@ -29,6 +24,7 @@ Layar Utama
 
 ## Setup
 https://chadbot-stima.herokuapp.com/ - Frontend
+
 https://chadbot-stima-backend.herokuapp.com/ - Backend
 
 ## Deploy Locally
@@ -70,5 +66,7 @@ Pembangunan Deadline Reminder Assistant - [@Link](https://informatika.stei.itb.a
 
 ## Contact
 13519096 [Girvin Junod](https://github.com/girvinjunod)
+
 13519114 [Renaldi Arlin](https://github.com/PLBU)
+
 13519163 [Alvin Wilta](https://github.com/alvinwilta)
