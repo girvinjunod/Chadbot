@@ -278,7 +278,7 @@ Here are my features:
 
     const getAllData = async () => {
         try {
-            let res = await axios.get(`${API_URL}/data/fetch`, { withCredentials: true })
+            let res = await axios.get(`${API_URL}/data/fetch`)
             return res.data
         } catch (err) {
             console.log(err)
