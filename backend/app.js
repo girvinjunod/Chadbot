@@ -4,15 +4,17 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const colName = 'works'; // ganti nama database disini, ada "tubes" dan ada "test"
 require('dotenv/config');
-const data = require('./route');
-const Work = require('./models/Work');
+PORT = process.env.PORT || 80
 ATLAS_URI = "mongodb+srv://chadbot:chadbot@stima-chadbot.ynlvv.mongodb.net/tubes?retryWrites=true&w=majority"
 
-const MongoClient = require('mongodb').MongoClient
+const MongoClient = require('mongodb').MongoClient;
+const bodyParser = require('body-parser');
 const client = new MongoClient(ATLAS_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 app.use(express.json());
-app.use(cors({origin: true, credentials: true}));
+app.use(cors({origin: 'https://chadbot-stima.herokuapp.com/'}));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 // Connect to MongoDB
 mongoose.connect(ATLAS_URI, { useNewUrlParser: true }, (err, res) => {
@@ -116,4 +118,4 @@ app.delete('/data/delete/', async (req, res) => {
     }
 });
 
-app.listen(process.env.PORT, () => console.log(`App running at https://${process.env.IP}:${process.env.PORT}`));
+app.listen(PORT, () => console.log(`App running at https://${process.env.IP}:${PORT}`));
