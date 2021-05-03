@@ -12,7 +12,7 @@ const bodyParser = require('body-parser');
 const client = new MongoClient(ATLAS_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 app.use(express.json());
-app.use(cors({origin: 'https://chadbot-stima.herokuapp.com/'}));
+app.use(cors({origin: '*'}));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
