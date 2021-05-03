@@ -86,7 +86,7 @@ app.post('/data/add', async (req, res) => {
 });
 
 app.put('/data/update', async (req, res) => {
-    if (!req.body.wid || !isInteger(req.body.wid)) {
+    if (!req.body.wid || req.body.wid !== parseInt(req.body.wid)) {
         res.status(400).send('ID tidak boleh kosong');
     } else if (!req.body.deadline) {
         res.status(400).send('Deadline tidak boleh kosong');
@@ -99,24 +99,22 @@ app.put('/data/update', async (req, res) => {
         const update = { $set: {deadline: req.body.deadline }};
         collection.updateOne(filter, update);
         let doc = await collection.findOne(filter);
-        res.send(doc)
+        if (doc !== null) res.send(doc)
+        else res.status(400).send("Didn't find the task that have the same id to be updated")
     }
 });
 
 app.delete('/data/delete/', async (req, res) => {
-    if (!req.body.wid || !isInteger(req.body.wid)) {
+    if (!req.body.wid ||  req.body.wid !== parseInt(req.body.wid)) {
         res.status(400).send('No id given');
     } else {
         console.log(req.body.wid)
         const ids = parseInt(req.body.wid)
-        collection.deleteOne({ wid: ids }, (err, response) => {
-            if (err) {
-                res.status(400).send(err)
-                console.log(err)
-            } else {
-                res.send("Successfully deleted")
-            }
-        })
+
+        let doc = await collection.deleteOne({ wid: ids })
+
+        if (doc.deletedCount === 0) res.status(400).send('Task with that id is not found')
+        else res.send('Successfully deleted')
     }
 });
 
